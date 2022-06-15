@@ -10,12 +10,12 @@ namespace PersonLibrary
 
         public bool IsConscript()
         {
-            return (Age() >= 18 && Age() < 27);
+            return (Gender == 'M' && (Age >= 18 && Age < 27));
         }
 
         public override string ToString()
         {
-            return "Lastname: " + Lastname + " Age: " + Age() + " Address: " + Address;
+            return "Lastname: " + Lastname + " Age: " + Age + " Address: " + Address;
         }
 
         public override int CompareTo(object obj)

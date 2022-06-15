@@ -2,39 +2,36 @@
 using System;
 using System.Collections.Generic;
 
-namespace ConsoleAppTask2
+namespace ConsoleAppTask3
 {
-    internal class ProgramTask2
+    internal class ProgramTask3
     {
-        private readonly List<PersonTask2> _persons;
+        private readonly List<PersonTask3> _persons;
 
         static void Main()
         {
-            ProgramTask2 app = new ProgramTask2();
+            ProgramTask3 app = new ProgramTask3();
 
             app.ReadPersons();
-
-            app.ShowCountOfHeavyPersons();
-
-            app.ShowAverageWeight();
-
+            app.ShowCountOfMalesWithAgeOver60();
+            app.ShowAverageAge();
             app.ShowGroupList();
 
             Console.ReadLine();
         }
 
-        private ProgramTask2()
-        {
-            _persons = new List<PersonTask2>();
+        private ProgramTask3() 
+        { 
+            _persons = new List<PersonTask3>();
         }
 
-        public void ReadPersons()
+        private void ReadPersons()
         {
             ConsoleKey consoleKey = ConsoleKey.Y;
 
             while (consoleKey == ConsoleKey.Y)
             {
-                PersonTask2 person = new PersonTask2();
+                PersonTask3 person = new PersonTask3();
 
                 Console.WriteLine("Enter Firstname:");
                 person.Firstname = Console.ReadLine();
@@ -51,12 +48,6 @@ namespace ConsoleAppTask2
                 Console.WriteLine("Enter Gender:");
                 person.Gender = char.Parse(Console.ReadLine());
 
-                Console.WriteLine("Enter weight:");
-                person.Weight = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Enter height:");
-                person.Height = int.Parse(Console.ReadLine());
-
                 _persons.Add(person);
 
                 Console.WriteLine("Add new Person? Y - yes, N - no");
@@ -66,38 +57,33 @@ namespace ConsoleAppTask2
             Console.WriteLine("");
         }
 
-        public void ShowCountOfHeavyPersons()
+        private void ShowCountOfMalesWithAgeOver60()
         {
-            int count = 0;
+            int count = _persons.FindAll(person => (person.Gender == 'M' && person.Age > 60)).Count;
 
-            foreach (PersonTask2 person in _persons)
-            {
-                if (person.Weight > 100)
-                    count++;
-            }
-
-            Console.WriteLine("Persons with large weight: " + count);
+            Console.WriteLine("Males with age more than 60: " + count);
+           
         }
 
-        public void ShowAverageWeight()
+        private void ShowAverageAge()
         {
-            int summaryWeight = 0;
+            int summaryAge = 0;
 
-            foreach (PersonTask2 person in _persons)
+            foreach (PersonTask3 person in _persons)
             {
-                summaryWeight += person.Weight;
+                summaryAge += person.Age;
             }
 
-            int result = summaryWeight / _persons.Count;
+            int result = summaryAge / _persons.Count;
 
-            Console.WriteLine("Average weight: " + result);
+            Console.WriteLine("Average age is: " + result);
         }
 
-        public void ShowGroupList()
+        private void ShowGroupList()
         {
             _persons.Sort();
 
-            foreach (Person person in _persons)
+            foreach (PersonTask3 person in _persons)
             {
                 Console.WriteLine(person);
             }

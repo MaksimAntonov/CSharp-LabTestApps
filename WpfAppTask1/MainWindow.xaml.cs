@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace WpfAppTask1
 {
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Person> _persons;
+        private ObservableCollection<PersonTask1> _persons;
 
         public MainWindow()
         {
@@ -20,7 +19,7 @@ namespace WpfAppTask1
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            _persons = new ObservableCollection<Person>();
+            _persons = new ObservableCollection<PersonTask1>();
             _persons.CollectionChanged += OnItemAdded;
 
             personsList.ItemsSource = _persons;
@@ -46,15 +45,8 @@ namespace WpfAppTask1
 
         private void ShowCountsOfMilitaryAge()
         {
-            List<Person> males = _persons.Where(person => person.Gender == 'M').ToList();
-            int count = 0;
-
-            foreach (Person male in males)
-            {
-                if (male is PersonTask1 person && person.IsConscript())
-                    count++;
-            }
-
+            int count = _persons.Where(person => person.IsConscript()).Count();
+            
             militaryAge.Text = count.ToString();
         }
 
@@ -64,7 +56,7 @@ namespace WpfAppTask1
 
             for (int i = 0; i < _persons.Count; i++)
             {
-                summaryAge += _persons[i].Age();
+                summaryAge += _persons[i].Age;
             }
 
             int result = summaryAge / _persons.Count;

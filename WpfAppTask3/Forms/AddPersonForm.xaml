@@ -1,0 +1,29 @@
+﻿<Window x:Class="WpfAppTask3.Forms.AddPersonForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppTask3.Forms"
+        mc:Ignorable="d"
+        Title="Add Person" Height="300" Width="200"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="0, 10, 0, 10">
+        <StackPanel Margin="10">
+            <TextBlock Text="Firstname" Height="20" VerticalAlignment="Top"/>
+            <TextBox Name="firstname" Height="20" VerticalAlignment="Top"/>
+            <TextBlock Text="Lastname" Height="20" VerticalAlignment="Top"/>
+            <TextBox Name="lastname" Height="20" VerticalAlignment="Top"/>
+            <TextBlock Text="Address" Height="20" VerticalAlignment="Top"/>
+            <TextBox Name="address" Height="20" VerticalAlignment="Top"/>
+            <TextBlock Text="Date of Birth" Height="20" VerticalAlignment="Top"/>
+            <DatePicker Name="birthday" IsDropDownOpen="False" SelectedDateFormat="Short" />
+            <TextBlock Text="Gender" Height="20" VerticalAlignment="Top" />
+            <ComboBox Height="20" Name="gender">
+                <ComboBoxItem Tag="m" IsSelected="True">Male</ComboBoxItem>
+                <ComboBoxItem Tag="f">Female</ComboBoxItem>
+            </ComboBox>
+
+        </StackPanel>
+        <Button Content="Add" Width="100" Height="20" VerticalAlignment="Bottom" Click="OnAddClick"/>
+    </Grid>
+</Window>

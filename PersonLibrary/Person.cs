@@ -9,8 +9,8 @@ namespace PersonLibrary
         public string Firstname { get; set; }
         public string Lastname { get; set; }
 
-        public string Fullname { get => $"{Firstname} {Lastname}"; }
-        
+        public string Fullname => $"{Firstname} {Lastname}";
+
         public DateTime Birthday { get; set; }
 
         public char Gender
@@ -27,12 +27,15 @@ namespace PersonLibrary
 
         public string Address { get; set; }
 
-        public int Age()
+        public int Age
         {
-            int a = DateTime.Now.Year - Birthday.Year;
-            if (DateTime.Now.DayOfYear < Birthday.DayOfYear)
-                a--;
-            return a;
+            get
+            {
+                int a = DateTime.Now.Year - Birthday.Year;
+                if (DateTime.Now.DayOfYear < Birthday.DayOfYear)
+                    a--;
+                return a;
+            }
         }
 
         public abstract int CompareTo(object obj);

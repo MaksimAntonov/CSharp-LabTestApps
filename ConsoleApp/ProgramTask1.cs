@@ -6,7 +6,7 @@ namespace ConsoleApp
 {
     internal class ProgramTask1
     {
-        private readonly List<Person> _persons;
+        private readonly List<PersonTask1> _persons;
 
         public static void Main()
         {
@@ -25,7 +25,7 @@ namespace ConsoleApp
 
         public ProgramTask1()
         {
-            _persons = new List<Person>();
+            _persons = new List<PersonTask1>();
         }
 
         public void ReadPersons()
@@ -34,7 +34,7 @@ namespace ConsoleApp
 
             while (consoleKey == ConsoleKey.Y)
             {
-                Person person = new PersonTask1();
+                PersonTask1 person = new PersonTask1();
 
                 Console.WriteLine("Enter Last name");
                 person.Lastname = Console.ReadLine();
@@ -59,15 +59,8 @@ namespace ConsoleApp
 
         public void ShowCountsOfMilitaryAge()
         {
-            List<Person> males = _persons.FindAll(person => person.Gender == 'M');
-            int count = 0;
-
-            foreach (Person male in males)
-            {
-                if (male is PersonTask1 person && person.IsConscript())
-                    count++;
-            }
-
+            int count = _persons.FindAll(person => person.IsConscript()).Count;
+            
             Console.WriteLine("Military age males: " + count);
         }
 
@@ -77,7 +70,7 @@ namespace ConsoleApp
 
             for (int i = 0; i < _persons.Count; i++)
             {
-                summaryAge += _persons[i].Age();
+                summaryAge += _persons[i].Age;
             }
 
             int result = summaryAge / _persons.Count;
